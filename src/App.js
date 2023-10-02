@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const clearTodo = (e) => {
-      if (e.keyCode == 27 ) {
+      if (e.keyCode === 27 ) {
         clear();
       }
     }
@@ -34,7 +34,7 @@ function App() {
   //   return () => window.removeEventListener('keydown', submitTodo)
   // }, [])
   useEffect(() => {
-    let currentTodo = currentId != 0 ? todos.find(todo => todo._id === currentId) :
+    let currentTodo = currentId !== 0 ? todos.find(todo => todo._id === currentId) :
       { title: '', content: '' };
     setTodo(currentTodo);
   }, [currentId])
