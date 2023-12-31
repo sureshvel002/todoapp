@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const clearTodo = (e) => {
-      if (e.keyCode === 27 ) {
+      if (e.keyCode === 27) {
         clear();
       }
     }
@@ -62,13 +62,13 @@ function App() {
   // }, []);
   const onSubmithandler = async (e) => {
     e.preventDefault();
-    if(currentId === 0) {
+    if (currentId === 0) {
       const result = await createTodo(todo)
       // console.log(result);
-      setTodos([...todos,result])
+      setTodos([...todos, result])
       clear();
-    }else{
-      await updateTodo(currentId,todo)
+    } else {
+      await updateTodo(currentId, todo)
       clear();
     }
   }
@@ -80,43 +80,62 @@ function App() {
     setTodos(todosCpy);
   }
   const showClear = todo.title || todo.content;
+  const dateString = '2023-12-14T17:54:45.819Z';
+  const convertUTCToLocalTime = (dateString) => {
+    let date = new Date(dateString);
+    const milliseconds = Date.UTC(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+    );
+    const localTime = new Date(milliseconds);
+    localTime.getDate() // local date
+    localTime.getHours() // local hour
+  };
+
   return (
     <div className="container">
+      {/* <h4 className='center'>TODO_APP</h4> */}
       <div className="row">
-        <pre>{JSON.stringify(todo)}</pre>
+        {/* <pre>{JSON.stringify(todo)}</pre> */}
+        <img className='col s12' src='https://tse4.mm.bing.net/th?id=OIP.c8KBwvvafoAfvZ2MNn24JgHaFj&pid=Api&P=0&h=180' alt='Happy New year 2024' width={150} height={150}></img>
         <form className="col s12" >
           <div className="row">
             <div className="input-field col s6">
-              <i className="material-icons prefix">title</i>
+              <i className="material-icons prefix">Title</i>
               <input id="icon_prefix" type="text" className="validate" value={todo.title} onChange={e => setTodo({ ...todo, title: e.target.value })} />
-              <label htmlFor="icon_prefix">Title</label>
+              <label htmlFor="icon_prefix">Name</label>
             </div>
             <div className="input-field col s6">
               <i className="material-icons prefix">description</i>
-              <input id="description" type="tel" className="validate" value={todo.content} onChange={e => setTodo({ ...todo, content: e.target.value })} />
-              <label htmlFor="description">Content</label>
+              <input id="description" type="text" className="validate" value={todo.content} onChange={e => setTodo({ ...todo, content: e.target.value })} />
+              <label htmlFor="description">Comments</label>
             </div>
           </div>
           <div className="row">
-            {showClear && <button className="wave-effect.waves-effect waves-light btn col s2" onClick={clear}>Clear</button>}
-            <button className="wave-effect.waves-effect waves-light btn col s2" onClick={onSubmithandler}>Submit</button>
+            {showClear && <button className="wave-effect.waves-effect waves-light btn col s3" onClick={clear}>Clear</button>}
+            <button className="wave-effect.waves-effect waves-light btn col s3" onClick={onSubmithandler} onKeyPress={event => event.key === "Enter" ? onSubmithandler(event) : null}>Submit</button>
           </div>
         </form>
         {!todos ? <Preloader /> : todos.length > 0 ? <ul className="collection">
           {todos.map(todo => <li key={todo.id}
-            onClick={() => setCurrentId(todo._id)}
             className="collection-item">
             <div>
-              <h5>{todo.title}</h5>
-              <p>{todo.content}
               <a className="secondary-content" onClick={() => removeTodo(todo._id)}>
-                <i className="material-icons">delete</i>
+                <button className="material-icons btn-floating btn-small waves-effect waves-light">delete</button>
               </a>
-              </p>
+              <span onClick={() => setCurrentId(todo._id)}>
+                <h5>{todo.title}</h5>
+                <p>{todo.content}</p>
+              </span>
+              <p>{todo.updatedAt}</p>
             </div>
           </li>
           )}
-        </ul> : <div>Nothing to do </div>}
+        </ul> : <div>Nope!!!</div>}
       </div>
     </div>
   );
