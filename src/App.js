@@ -80,21 +80,7 @@ function App() {
     setTodos(todosCpy);
   }
   const showClear = todo.title || todo.content;
-  const dateString = '2023-12-14T17:54:45.819Z';
-  const convertUTCToLocalTime = (dateString) => {
-    let date = new Date(dateString);
-    const milliseconds = Date.UTC(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds(),
-    );
-    const localTime = new Date(milliseconds);
-    localTime.getDate() // local date
-    localTime.getHours() // local hour
-  };
+
 
   return (
     <div className="container">
