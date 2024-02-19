@@ -98,10 +98,9 @@ function App() {
 
   return (
     <div className="container">
-      {/* <h4 className='center'>TODO_APP</h4> */}
+      <h4 className='center'>TODO_APP</h4>
       <div className="row">
         {/* <pre>{JSON.stringify(todo)}</pre> */}
-        <img className='col s12' src='https://tse4.mm.bing.net/th?id=OIP.c8KBwvvafoAfvZ2MNn24JgHaFj&pid=Api&P=0&h=180' alt='Happy New year 2024' width={150} height={150}></img>
         <form className="col s12" >
           <div className="row">
             <div className="input-field col s6">
