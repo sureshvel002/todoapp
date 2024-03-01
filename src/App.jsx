@@ -145,15 +145,15 @@ const App = () => {
 
           </div>
           <div className="row">
-            {showClear && <button className="wave-effect.waves-effect waves-light btn col s3" onClick={clear}>Clear</button>}
-            <button className="wave-effect.waves-effect waves-light btn col s3" onClick={onSubmithandler}>Submit</button>
+            {showClear && <button className="wave-effect.waves-effect waves-light btn col" onClick={clear} style={{marginRight:5}}>Clear</button>}
+            <button className="wave-effect.waves-effect waves-light btn col" onClick={onSubmithandler}>Submit</button>
           </div>
         </form>
         {!todos ? <Preloader /> : todos.length > 0 ? <ul className="collection">
           {todos.map(todo => <li key={todo.id}
             className="collection-item">
             <div>
-              <div className='secondary-content' >
+              <div className='secondary-content'>
                 <a onClick={() => setCurrentId(todo._id)}>
                   <button className="material-icons btn-floating btn-small waves-effect waves-light" style={{marginRight:5}}>create</button>
                 </a>
